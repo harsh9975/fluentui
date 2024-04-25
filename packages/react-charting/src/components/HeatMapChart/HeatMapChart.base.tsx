@@ -628,7 +628,9 @@ export class HeatMapChartBase extends React.Component<IHeatMapChartProps, IHeatM
   private _getStringFormattedDate = (point: string, formatString?: string): string => {
     const date = new Date();
     date.setTime(+point);
-    return d3TimeFormat(formatString || '%b/%d')(date);
+    return formatString === '%Y'
+      ? 'Y ' + d3TimeFormat(formatString || '%b/%d')(date)
+      : d3TimeFormat(formatString || '%b/%d')(date);
   };
 
   private _getStringFormattedNumber = (point: string, formatString?: string): string => {

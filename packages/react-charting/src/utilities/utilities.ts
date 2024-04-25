@@ -1383,6 +1383,8 @@ export const convertToLocaleString = (data: LocaleStringDataProps, culture?: str
   } else if (typeof data === 'string' && !window.isNaN(Number(data))) {
     const num = Number(data);
     return num.toLocaleString(culture);
+  } else if (typeof data === 'string' && data.includes('Y ')) {
+    return data.substring(2);
   } else if (data instanceof Date) {
     return data.toLocaleDateString(culture);
   }
